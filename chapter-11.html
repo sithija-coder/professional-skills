@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chapter 11 — Charity Project & Self-Reflection</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f7fb;--surface:#fff;--surface2:#eef2f8;--border:#d0daea;--accent:#1a56db;--text:#1e293b;--body:#374151;--muted:#6b7280;--nav-bg:#1e3a5f;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-size:17px;line-height:1.75;}
+h1,h2,h3,h4{font-family:"Playfair Display",serif;}
+a{text-decoration:none;}
+
+.topbar{background:var(--nav-bg);padding:.9rem 0;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--accent);}
+.brand{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:#7dd3fc;}
+.brand span{color:#34d399;}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;color:#cbd5e1;font-size:.9rem;font-weight:500;}
+.back-btn:hover{color:#7dd3fc;}
+
+.page-hero{background:var(--nav-bg);padding:3.5rem 0 2.5rem;border-bottom:1px solid #2d4a6d;}
+.chapter-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#34d399;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);border-radius:100px;padding:.3rem .9rem;margin-bottom:1rem;}
+.page-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:.8rem;}
+.page-subtitle{font-size:1.05rem;color:#94a3b8;max-width:600px;line-height:1.7;}
+
+.content-area{padding:2.5rem 0 5rem;}
+
+.section-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.section-card-title{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.section-card-title i{color:var(--accent);}
+
+p{color:var(--body);line-height:1.8;margin-bottom:.9rem;}
+p:last-child{margin-bottom:0;}
+ul{color:var(--body);padding-left:1.3rem;line-height:1.8;}
+li{margin-bottom:.4rem;}
+
+/* images */
+.project-img{width:100%;border-radius:10px;border:1px solid var(--border);display:block;object-fit:cover;max-height:280px;}
+.img-caption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.4rem;margin-bottom:1.2rem;}
+
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.img-grid img{width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;height:200px;}
+
+.img-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:.5rem;}
+.img-grid-3 img{width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;height:160px;}
+
+/* info */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:1rem;}
+.info-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
+.info-item strong{display:block;color:var(--accent);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+.info-item span{font-size:.92rem;color:var(--body);}
+
+/* budget table */
+.budget-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.92rem;}
+.budget-table th{background:#1e3a5f;color:#fff;padding:.65rem 1rem;text-align:left;font-family:"Playfair Display",serif;font-size:.9rem;}
+.budget-table td{padding:.6rem 1rem;border-bottom:1px solid var(--border);color:var(--body);}
+.budget-table tr:nth-child(even) td{background:var(--surface2);}
+.budget-table tfoot td{font-weight:700;color:#1a56db;background:#eff6ff;border-top:2px solid #93c5fd;}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+.step{display:flex;gap:.9rem;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+.step-num{min-width:30px;height:30px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0;}
+.step strong{display:block;color:var(--text);font-size:.93rem;margin-bottom:.15rem;}
+.step span{font-size:.88rem;color:var(--muted);}
+
+/* outcome */
+.outcome-list{display:flex;flex-direction:column;gap:.7rem;margin-top:.8rem;}
+.outcome-item{display:flex;gap:.8rem;align-items:flex-start;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:.8rem 1rem;}
+.outcome-item i{color:#16a34a;font-size:1rem;flex-shrink:0;margin-top:3px;}
+.outcome-item span{font-size:.93rem;color:var(--body);}
+
+/* challenges */
+.challenge-item{display:flex;gap:.8rem;align-items:flex-start;background:#fff1f2;border:1px solid #fca5a5;border-radius:10px;padding:.8rem 1rem;margin-bottom:.7rem;}
+.challenge-item i{color:#dc2626;font-size:1rem;flex-shrink:0;margin-top:3px;}
+.challenge-item span{font-size:.93rem;color:var(--body);}
+
+/* recap grid */
+.recap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin-top:1rem;}
+.recap-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;display:flex;gap:.7rem;align-items:flex-start;}
+.recap-item i{color:var(--accent);font-size:1rem;flex-shrink:0;margin-top:3px;}
+.recap-item div strong{display:block;color:var(--text);font-size:.88rem;margin-bottom:.15rem;}
+.recap-item div span{font-size:.82rem;color:var(--muted);}
+
+/* two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.col-blue{background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:1.2rem;}
+.col-green{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:1.2rem;}
+.col-blue h4{color:#1d4ed8;font-size:1rem;margin-bottom:.6rem;}
+.col-green h4{color:#16a34a;font-size:1rem;margin-bottom:.6rem;}
+.col-blue li,.col-green li{font-size:.92rem;color:var(--body);}
+
+/* goals */
+.goal-list{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+.goal-item{display:flex;gap:.9rem;align-items:flex-start;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:.9rem 1rem;}
+.goal-icon{color:#16a34a;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+.goal-item strong{display:block;color:var(--text);font-size:.93rem;margin-bottom:.2rem;}
+.goal-item span{font-size:.88rem;color:var(--body);}
+
+/* stat boxes */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;}
+.stat-box{background:linear-gradient(135deg,#1e3a5f,#1a56db);border-radius:12px;padding:1.3rem;text-align:center;}
+.stat-box .num{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:#fff;display:block;line-height:1;}
+.stat-box .lbl{font-size:.8rem;color:#bfdbfe;margin-top:.3rem;display:block;letter-spacing:.06em;text-transform:uppercase;}
+
+/* reflection */
+.reflection{background:#eff6ff;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;}
+.reflection p{color:#1e3a5f;}
+
+/* closing */
+.closing{background:linear-gradient(135deg,#1e3a5f,#1a56db);border-radius:14px;padding:2.5rem;text-align:center;margin-top:1.5rem;}
+.closing h3{color:#fff;font-size:1.4rem;margin-bottom:.8rem;}
+.closing p{color:#bfdbfe;font-size:.97rem;max-width:520px;margin:0 auto;}
+
+/* nav */
+.nav-chapters{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.nav-btn{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.9rem;font-weight:500;}
+.nav-btn:hover{color:var(--accent);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .section-card{padding:1.25rem;}
+  .stat-row{grid-template-columns:1fr;}
+  .stat-box .num{font-size:1.6rem;}
+}
+
+@media(max-width:640px){
+  .img-grid,
+  .img-grid-3,
+  .two-col,
+  .stat-row{grid-template-columns:1fr;}
+
+  .img-grid img{height:180px;}
+  .img-grid-3 img{height:160px;}
+
+  /* make the budget table scroll horizontally on tiny screens */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .budget-table{min-width:360px;}
+
+  .page-hero{padding:2rem 0 1.5rem;}
+  .page-subtitle{font-size:.95rem;}
+
+  .nav-chapters{flex-direction:column;gap:1rem;text-align:center;}
+}
+
+/* utility classes to avoid inline styles */
+.mt-top{margin-top:1.5rem;}
+.pack-title{font-weight:600;color:var(--text);margin-bottom:.5rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="home.html" class="brand">SI<span>.</span></a>
+    <a href="home.html" class="back-btn"><i class="bi bi-arrow-left"></i> Portfolio</a>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="chapter-badge"><i class="bi bi-heart-fill"></i> Chapter 11</div>
+    <h1 class="page-title">Charity Project</h1>
+    <p class="page-subtitle">Our Group 14 charity project donating dry ration packs to cancer patients and their families at Indira Cancer Trust, Maharagama and what this experience taught me about empathy, teamwork, and professional growth.</p>
+  </div>
+</div>
+
+<div class="content-area">
+  <div class="container">
+
+    <!-- Hero image -->
+    <img src="https://indiracancertrust.org/wp-content/uploads/2021/07/suwa-arana.jpg"
+         alt="Indira Cancer Trust — Suwa Arana facility"
+         class="project-img"
+         onerror="this.style.display='none'"/>
+    <p class="img-caption">Indira Cancer Trust — Suwa Arana, 63 Cancer Hospital Rd, Maharagama</p>
+
+    <!-- About the organisation -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-building-heart"></i> About the Organisation</h2>
+      <p>The <strong>Indira Cancer Trust</strong> is a well-recognised non-profit organisation in Sri Lanka that provides comprehensive support to cancer patients and their families. It was established in 2016 by Hon. Karu Jayasuriya in memory of his daughter, Indira Jayasuriya, who passed away from breast cancer at age 40.</p>
+      <p>Its flagship project, <strong>"Suwa Arana — A Place for Healing,"</strong> is Sri Lanka's first paediatric palliative care centre. It provides free accommodation, meals, counselling, and emotional support for children undergoing cancer treatment and their low-income families who travel from distant areas — a true "home away from home."</p>
+      <div class="info-grid">
+        <div class="info-item"><strong>Founded</strong><span>2016, by Hon. Karu Jayasuriya</span></div>
+        <div class="info-item"><strong>Focus</strong><span>Palliative care, nutritional support, financial aid, counselling</span></div>
+        <div class="info-item"><strong>Location</strong><span>63 Cancer Hospital Rd, Maharagama</span></div>
+        <div class="info-item"><strong>Website</strong><span>indiracancertrust.org</span></div>
+      </div>
+    </div>
+
+    <!-- Project stats -->
+    <div class="stat-row">
+      <div class="stat-box"><span class="num">11</span><span class="lbl">Group Members</span></div>
+      <div class="stat-box"><span class="num">10</span><span class="lbl">Ration Packs Donated</span></div>
+      <div class="stat-box"><span class="num">Rs.50,000</span><span class="lbl">Total Funds Raised</span></div>
+    </div>
+
+    <!-- Objectives -->
+    <div class="section-card mt-top">
+      <h2 class="section-card-title"><i class="bi bi-bullseye"></i> Project Objectives</h2>
+      <p><strong>Main objective:</strong> To support low-income families and palliative cancer patients by providing essential dry ration packs to reduce their financial burden during treatment.</p>
+      <p class="pack-title"><strong>Other objectives:</strong></p>
+      <ul>
+        <li>Contribute to the ongoing efforts of the Indira Cancer Trust and the "Suwa Arana" project</li>
+        <li>Identify and respond to a real community need through meaningful charity work</li>
+        <li>Develop teamwork, communication, and project management skills within the group</li>
+        <li>Enhance empathy and social responsibility through direct community engagement</li>
+      </ul>
+    </div>
+
+    <!-- Planning & Needs Analysis -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-clipboard-check"></i> Project Planning & Needs Analysis</h2>
+      <p>Our team conducted an initial visit to the Indira Cancer Trust on <strong>February 13, 2026</strong>. Ms. Priyani, the facility counsellor, guided us through all seven floors of the Suwa Arana building and explained how patients and their families live during treatment.</p>
+      <p>The facility provides study areas, relaxation spaces, a playroom for children, and shared accommodation — designed to support families far from home. Through this visit, we identified that many families struggle to meet daily food needs due to high medical costs. This led us to decide on providing essential dry ration packs as our practical contribution.</p>
+    </div>
+
+    <!-- Budget & Fund Collection — FIXED: removed broken col-lg-6 wrapper -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-cash-stack"></i> Budget & Fund Collection</h2>
+      <p>Each of the 11 group members contributed a minimum of Rs. 3,000, with additional voluntary contributions, totalling <strong>Rs. 50,000</strong> — sufficient to prepare 10 complete dry ration packs at Rs. 5,000 per pack.</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:.5rem;">Dry Ration Pack Contents (Per Pack — Rs. 5,000)</p>
+      <!-- table-scroll wrapper makes it horizontally scrollable on mobile -->
+      <div class="table-scroll">
+        <table class="budget-table">
+          <thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>Rice</td><td>5 kg</td><td>Rs. 1,300</td></tr>
+            <tr><td>Sugar</td><td>1 kg</td><td>Rs. 245</td></tr>
+            <tr><td>Tea Leaves</td><td>200 g</td><td>Rs. 420</td></tr>
+            <tr><td>Milk Powder</td><td>400 g</td><td>Rs. 1,150</td></tr>
+            <tr><td>Noodles</td><td>1 large pack</td><td>Rs. 250</td></tr>
+            <tr><td>Wheat Flour</td><td>1 kg</td><td>Rs. 245</td></tr>
+            <tr><td>Dhal</td><td>1 kg</td><td>Rs. 300</td></tr>
+            <tr><td>Chickpeas</td><td>1 kg</td><td>Rs. 380</td></tr>
+            <tr><td>Cream Crackers</td><td>250 g</td><td>Rs. 240</td></tr>
+            <tr><td>Curry Powder</td><td>100 g</td><td>Rs. 190</td></tr>
+            <tr><td>Chilli Powder</td><td>100 g</td><td>Rs. 170</td></tr>
+            <tr><td>Salt</td><td>100 g</td><td>Rs. 110</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="2">Total per pack</td><td>Rs. 5,000</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Implementation -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-gear"></i> Implementation of the Project</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><strong>Fund Transfer — March 31, 2026</strong><span>After discussions with the Trust, we transferred Rs. 50,000 directly to the Indira Cancer Trust to allow them to purchase items from their trusted, patient-suitable wholesale supplier.</span></div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Item Purchase — April 6, 2026</strong><span>All ration items were procured through the Trust's recommended supplier, ensuring quality and suitability for cancer patients.</span></div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>Transportation</strong><span>The centre coordinated delivery of all purchased items safely to the Suwa Arana facility on time.</span></div></div>
+        <div class="step"><div class="step-num">4</div><div><strong>Packing & Donation Day — April 7, 2026</strong><span>All 11 group members gathered at the centre to pack 10 dry ration bags with equal contents. Packs were then donated directly to selected cancer patients and their families.</span></div></div>
+      </div>
+    </div>
+
+    <!-- Packing photos -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-images"></i> Packing Process & Donation Day</h2>
+      <div class="img-grid">
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg"
+               alt="Packing dry ration items"
+               style="width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;height:200px;"
+               onerror="this.parentElement.innerHTML='<div style=\'background:#eef2f8;border:1px solid #d0daea;border-radius:10px;height:200px;display:flex;align-items:center;justify-content:center;color:#6b7280;font-size:.9rem;\'>📦 Packing Process Photo</div>'"/>
+          <p class="img-caption">Group members packing dry ration items at the Indira Cancer Trust facility</p>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg"
+               alt="Completed ration packs"
+               style="width:100%;border-radius:10px;border:1px solid var(--border);object-fit:cover;height:200px;"
+               onerror="this.parentElement.innerHTML='<div style=\'background:#eef2f8;border:1px solid #d0daea;border-radius:10px;height:200px;display:flex;align-items:center;justify-content:center;color:#6b7280;font-size:.9rem;\'>🎁 Completed Ration Packs</div>'"/>
+          <p class="img-caption">10 completed dry ration packs ready for distribution to beneficiary families</p>
+        </div>
+      </div>
+      <p style="font-size:.9rem;color:var(--muted);text-align:center;margin-top:.5rem;">
+        <i class="bi bi-info-circle me-1"></i>
+        Photos from the actual donation day — April 7, 2026, at Indira Cancer Trust, Maharagama
+      </p>
+    </div>
+
+    <!-- Outcome -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-trophy"></i> Outcome & Impact on Beneficiaries</h2>
+      <div class="outcome-list">
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>10 dry ration packs successfully distributed to selected cancer patients and their families</span></div>
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>Each pack supports a family's daily food needs for approximately <strong>one month</strong></span></div>
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>Helped reduce the financial burden on low-income families facing high medical expenses</span></div>
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>Families could redirect limited funds towards children's medical treatment instead of food</span></div>
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>Provided emotional relief and encouragement — beneficiaries felt genuinely cared for</span></div>
+        <div class="outcome-item"><i class="bi bi-check-circle-fill"></i><span>Overall positive impact on both the financial and emotional well-being of 10 families</span></div>
+      </div>
+    </div>
+
+    <!-- Challenges -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-exclamation-triangle"></i> Challenges Faced</h2>
+      <div class="challenge-item"><i class="bi bi-x-circle-fill"></i><span>Coordinating a common time among all 11 group members for planning meetings and activities was consistently difficult</span></div>
+      <div class="challenge-item"><i class="bi bi-x-circle-fill"></i><span>Maintaining timely communication with the Indira Cancer Trust required continuous follow-up and persistence</span></div>
+      <div class="challenge-item"><i class="bi bi-x-circle-fill"></i><span>The donation date was postponed by the Trust from April 3 to April 7, requiring us to flexibly reschedule all preparation activities at short notice</span></div>
+    </div>
+
+    <!-- Personal Growth -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-graph-up-arrow"></i> Personal Growth Assessment</h2>
+      <div class="two-col">
+        <div class="col-blue">
+          <h4>💪 Strengths Developed</h4>
+          <ul>
+            <li>Real empathy through direct interaction with cancer patients' families</li>
+            <li>Stronger teamwork and communication under real world constraints</li>
+            <li>Confidence in project planning, budgeting, and coordination</li>
+            <li>Professional communication with external organisations</li>
+            <li>Adaptability — rescheduling calmly when plans changed</li>
+          </ul>
+        </div>
+        <div class="col-green">
+          <h4>🌱 Areas to Keep Growing</h4>
+          <ul>
+            <li>Scheduling and coordinating large groups more efficiently</li>
+            <li>Proactive rather than reactive communication with partners</li>
+            <li>Public speaking — presenting our project experience confidently</li>
+            <li>Expanding community engagement beyond this one project</li>
+            <li>Turning this experience into a compelling interview story</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reflection -->
+    <div class="section-card">
+      <h2 class="section-card-title"><i class="bi bi-journal-text"></i> My Reflection</h2>
+      <div class="reflection">
+        <p>This charity project was the most personally meaningful part of this entire course. Visiting Suwa Arana and seeing families — especially parents of sick children — managing treatment, accommodation, and food on almost nothing made every lecture concept feel real. Empathy was no longer a theory; it was what I felt packing those ration bags.</p>
+        <p>I also saw every professional skill from this course in action: we wrote professional emails to coordinate with the Trust, managed a budget, negotiated rescheduled dates, dressed and presented ourselves appropriately on visit days, and worked as a team despite busy schedules. This project did not just teach me about charity — it showed me that professional skills and social responsibility are deeply connected.</p>
+        <p>I leave this course not just with knowledge, but with a clearer sense of the professional I want to be — someone technically capable, ethically grounded, and genuinely committed to making a difference wherever I work.</p>
+      </div>
+    </div>
+
+    <div class="nav-chapters">
+      <a href="chapter-10.html" class="nav-btn"><i class="bi bi-arrow-left"></i> Chapter 10</a>
+      <a href="home.html" class="nav-btn"><i class="bi bi-house"></i> Back to Home</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

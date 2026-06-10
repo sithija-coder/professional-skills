@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chapter 04 — Portfolio Management</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+    --surface2:#eef2f8;
+    --border:#d0daea;
+    --accent:#1a56db;
+    --accent2:#0e9f6e;
+    --gold:#b45309;
+    --text:#1e293b;
+    --body:#374151;
+    --muted:#6b7280;
+    --nav-bg:#1e3a5f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-size:17px;line-height:1.75;}
+  h1,h2,h3,h4{font-family:"Playfair Display",serif;}
+  a{text-decoration:none;}
+  /* topbar */
+  .topbar{background:var(--nav-bg);padding:.9rem 0;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--accent);}
+  .brand{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:#7dd3fc;}
+  .brand span{color:#34d399;}
+  .back-btn{display:inline-flex;align-items:center;gap:.4rem;color:#cbd5e1;font-size:.9rem;font-weight:500;transition:color .2s;}
+  .back-btn:hover{color:#7dd3fc;}
+  /* hero */
+  .page-hero{background:var(--nav-bg);padding:3.5rem 0 2.5rem;border-bottom:1px solid #2d4a6d;}
+  .chapter-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#34d399;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);border-radius:100px;padding:.3rem .9rem;margin-bottom:1rem;}
+  .page-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:.8rem;}
+  .page-subtitle{font-size:1.05rem;color:#94a3b8;max-width:580px;line-height:1.7;}
+  /* content */
+  .content-area{padding:2.5rem 0 5rem;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .card-title{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+  .card-title i{color:var(--accent);}
+  p{color:var(--body);line-height:1.8;margin-bottom:.9rem;}
+  p:last-child{margin-bottom:0;}
+  ul,ol{color:var(--body);padding-left:1.3rem;line-height:1.8;}
+  li{margin-bottom:.4rem;}
+  /* topic image */
+  .topic-img{width:100%;border-radius:10px;border:1px solid var(--border);margin-bottom:2.0rem;display:block;object-fit:cover;max-height:500px;}
+  /* info grid */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem;}
+  .info-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
+  .info-item strong{display:block;color:var(--accent);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+  .info-item span{font-size:.92rem;color:var(--body);}
+  /* do/dont */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+  .col-green{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:1.2rem;}
+  .col-red{background:#fff1f2;border:1px solid #fca5a5;border-radius:10px;padding:1.2rem;}
+  .col-blue{background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:1.2rem;}
+  .col-amber{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:1.2rem;}
+  .col-green h4{color:#16a34a;font-size:1rem;margin-bottom:.6rem;}
+  .col-red h4{color:#dc2626;font-size:1rem;margin-bottom:.6rem;}
+  .col-blue h4{color:#1d4ed8;font-size:1rem;margin-bottom:.6rem;}
+  .col-amber h4{color:#92400e;font-size:1rem;margin-bottom:.6rem;}
+  .col-green li,.col-red li,.col-blue li,.col-amber li{font-size:.92rem;}
+  /* reflection */
+  .reflection{background:#eff6ff;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;}
+  .reflection p{color:#1e3a5f;}
+  /* steps */
+  .steps{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+  .step{display:flex;gap:.9rem;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+  .step-num{min-width:30px;height:30px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0;}
+  .step strong{display:block;color:var(--text);font-size:.93rem;margin-bottom:.15rem;}
+  .step span{font-size:.88rem;color:var(--muted);}
+  /* nav */
+  .nav-chapters{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .nav-btn{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s;}
+  .nav-btn:hover{color:var(--accent);}
+  @media(max-width:600px){.two-col,.johari{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="home.html" class="brand">SI<span>.</span></a>
+    <a href="home.html" class="back-btn"><i class="bi bi-arrow-left"></i> Portfolio</a>
+  </div>
+</div>
+<div class="page-hero">
+  <div class="container">
+    <div class="chapter-badge"><i class="bi bi-folder2-open"></i> Chapter 04</div>
+    <h1 class="page-title">Portfolio Management</h1>
+    <p class="page-subtitle">Understanding what a portfolio is, the types that exist, and how to build an assessment portfolio that genuinely showcases growth and competence.</p>
+  </div>
+</div>
+<div class="content-area"><div class="container">
+
+ <img src="Protfolio.png" alt="Portfolio Management Overview" class="topic-img"/>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-book"></i> What Is a Portfolio?</h2>
+    <p>A portfolio is a purposeful collection of work, achievements, and evidence of skills. It goes beyond a CV by providing tangible proof of competence not just claiming you can do something, but demonstrating it. Portfolios are used across job applications, academic assessments, creative industries, and personal branding.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-grid-1x2"></i> Types of Portfolio</h2>
+    <div class="info-grid">
+      <div class="info-item"><strong>Personal Portfolio</strong><span>Showcases creative work and personal interests. Common in design, photography, and writing.</span></div>
+      <div class="info-item"><strong>Career / Dossier Portfolio</strong><span>Presents professional credentials resume, cover letter, references, and work samples.</span></div>
+      <div class="info-item"><strong>Employment Portfolio</strong><span>Comprehensive collection of workplace contributions, evaluations, and evidence of performance.</span></div>
+      <div class="info-item"><strong>Assessment Portfolio</strong><span>Documents learning progress over time used in educational settings like this course.</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-list-ol"></i> How to Build an Assessment Portfolio</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><strong>Define Your Purpose</strong><span>Is it for academic assessment, job applications, or personal development? This shapes everything.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Know Your Audience</strong><span>Tailor content and tone to meet the expectations of whoever will review it.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Choose Your Format</strong><span>Physical binder or digital website/PDF. Digital is more versatile and shareable.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div><strong>Collect Materials</strong><span>Gather work samples, certificates, reflections, and any evidence of applied skills.</span></div></div>
+      <div class="step"><div class="step-num">5</div><div><strong>Organise & Reflect</strong><span>Structure logically, write reflections for each piece, and ensure it tells a coherent story of growth.</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-journal-text"></i> My Reflection</h2>
+    <div class="reflection">
+      <p>This chapter is meta it taught me how to build the very thing I am creating. The most important lesson: a portfolio is not a collection of files but a curated, reflective narrative. Every piece must be there for a reason, and every chapter should tell something meaningful about my growth as a professional.</p>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a href="chapter-03.html" class="nav-btn"><i class="bi bi-arrow-left"></i> Chapter 03</a>
+    <a href="chapter-05.html" class="nav-btn">Chapter 05 — Interview Skills <i class="bi bi-arrow-right"></i></a>
+  </div>
+</div></div>
+</body>
+</html>

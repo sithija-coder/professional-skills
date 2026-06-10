@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chapter 07 — Dining Etiquette</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+<style>
+:root{
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+    --surface2:#eef2f8;
+    --border:#d0daea;
+    --accent:#1a56db;
+    --accent2:#0e9f6e;
+    --gold:#b45309;
+    --text:#1e293b;
+    --body:#374151;
+    --muted:#6b7280;
+    --nav-bg:#1e3a5f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-size:17px;line-height:1.75;}
+  h1,h2,h3,h4{font-family:"Playfair Display",serif;}
+  a{text-decoration:none;}
+  /* topbar */
+  .topbar{background:var(--nav-bg);padding:.9rem 0;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--accent);}
+  .brand{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:900;color:#7dd3fc;}
+  .brand span{color:#34d399;}
+  .back-btn{display:inline-flex;align-items:center;gap:.4rem;color:#cbd5e1;font-size:.9rem;font-weight:500;transition:color .2s;}
+  .back-btn:hover{color:#7dd3fc;}
+  /* hero */
+  .page-hero{background:var(--nav-bg);padding:3.5rem 0 2.5rem;border-bottom:1px solid #2d4a6d;}
+  .chapter-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#34d399;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);border-radius:100px;padding:.3rem .9rem;margin-bottom:1rem;}
+  .page-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:.8rem;}
+  .page-subtitle{font-size:1.05rem;color:#94a3b8;max-width:580px;line-height:1.7;}
+  /* content */
+  .content-area{padding:2.5rem 0 5rem;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .card-title{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+  .card-title i{color:var(--accent);}
+  p{color:var(--body);line-height:1.8;margin-bottom:.9rem;}
+  p:last-child{margin-bottom:0;}
+  ul,ol{color:var(--body);padding-left:1.3rem;line-height:1.8;}
+  li{margin-bottom:.4rem;}
+  /* topic image */
+  .topic-img{width:100%;border-radius:10px;border:1px solid var(--border);margin-bottom:2.0rem;display:block;object-fit:cover;max-height:500px;}
+  /* info grid */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem;}
+  .info-item{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
+  .info-item strong{display:block;color:var(--accent);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+  .info-item span{font-size:.92rem;color:var(--body);}
+  /* do/dont */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+  .col-green{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:1.2rem;}
+  .col-red{background:#fff1f2;border:1px solid #fca5a5;border-radius:10px;padding:1.2rem;}
+  .col-blue{background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:1.2rem;}
+  .col-amber{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:1.2rem;}
+  .col-green h4{color:#16a34a;font-size:1rem;margin-bottom:.6rem;}
+  .col-red h4{color:#dc2626;font-size:1rem;margin-bottom:.6rem;}
+  .col-blue h4{color:#1d4ed8;font-size:1rem;margin-bottom:.6rem;}
+  .col-amber h4{color:#92400e;font-size:1rem;margin-bottom:.6rem;}
+  .col-green li,.col-red li,.col-blue li,.col-amber li{font-size:.92rem;}
+  /* reflection */
+  .reflection{background:#eff6ff;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;}
+  .reflection p{color:#1e3a5f;}
+  /* steps */
+  .steps{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+  .step{display:flex;gap:.9rem;align-items:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;}
+  .step-num{min-width:30px;height:30px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0;}
+  .step strong{display:block;color:var(--text);font-size:.93rem;margin-bottom:.15rem;}
+  .step span{font-size:.88rem;color:var(--muted);}
+  /* nav */
+  .nav-chapters{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .nav-btn{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s;}
+  .nav-btn:hover{color:var(--accent);}
+  @media(max-width:600px){.two-col,.johari{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="home.html" class="brand">SI<span>.</span></a>
+    <a href="home.html" class="back-btn"><i class="bi bi-arrow-left"></i> Portfolio</a>
+  </div>
+</div>
+<div class="page-hero">
+  <div class="container">
+    <div class="chapter-badge"><i class="bi bi-cup-hot"></i> Chapter 07</div>
+    <h1 class="page-title">Dining Etiquette & Table Manners</h1>
+    <p class="page-subtitle">Navigating formal and informal dining with confidence from table settings and napkin use to the social awareness that defines a polished professional.</p>
+  </div>
+</div>
+<div class="content-area"><div class="container">
+
+   <img src="dining-etiquette.jpg" alt="Dining Etiquette Overview" class="topic-img"/>
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-book"></i> Why Dining Etiquette Matters</h2>
+    <p>First impressions are formed within seconds, and dining situations business lunches, client dinners, networking events are prime professional arenas. Your behaviour at the table signals confidence, cultural awareness, and respect for others. These are qualities every employer and colleague notices, often before any work is discussed.</p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-grid-3x3"></i> The BMW Rule & Table Reading</h2>
+    <div class="bmw-box">
+      <div class="bmw-label">B &nbsp;·&nbsp; M &nbsp;·&nbsp; W</div>
+      <p><strong>Bread</strong> on your left &nbsp;·&nbsp; <strong>Meal</strong> in the centre &nbsp;·&nbsp; <strong>Water</strong> on your right</p>
+    </div>
+    <div class="info-grid" style="margin-top:1rem;">
+      <div class="info-item"><strong>Outside In</strong><span>Use utensils from the outermost inward as each course is served.</span></div>
+      <div class="info-item"><strong>Napkin First</strong><span>Unfold and place on your lap immediately upon being seated.</span></div>
+      <div class="info-item"><strong>Rest Position</strong><span>Fork and knife crossed - still eating. Parallel - finished.</span></div>
+      <div class="info-item"><strong>Wait for Host</strong><span>Do not begin eating until the host starts or invites everyone to eat.</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-check2-square"></i> Napkin & General Manners</h2>
+    <div class="two-col">
+      <div class="col-green">
+        <h4>✅ DO</h4>
+        <ul>
+          <li>Place napkin on lap as soon as seated</li>
+          <li>Dab never wipe your mouth</li>
+          <li>Set napkin on chair when leaving temporarily</li>
+          <li>Chew with your mouth closed</li>
+          <li>Keep phone away during meals</li>
+          <li>Engage in polite, inclusive conversation</li>
+        </ul>
+      </div>
+      <div class="col-red">
+        <h4>❌ DON'T</h4>
+        <ul>
+          <li>Tuck napkin into collar or waistband</li>
+          <li>Use it to blow your nose at the table</li>
+          <li>Talk with food in your mouth</li>
+          <li>Reach across others for items</li>
+          <li>Begin eating before the host</li>
+          <li>Stack or push plates away when done</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title"><i class="bi bi-journal-text"></i> My Reflection</h2>
+    <div class="reflection">
+      <p>Dining etiquette was the most unexpectedly practical chapter. The BMW rule alone changed how I approach every table. More importantly, I understood the deeper message good manners are about making others feel comfortable and valued, not following rules for their own sake. That principle applies far beyond the dining room.</p>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a href="chapter-06.html" class="nav-btn"><i class="bi bi-arrow-left"></i> Chapter 06</a>
+    <a href="chapter-08.html" class="nav-btn">Chapter 08 — Grooming & Etiquette <i class="bi bi-arrow-right"></i></a>
+  </div>
+</div></div>
+</body>
+</html>
